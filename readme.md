@@ -13,30 +13,46 @@ For import- export database, cache refresh
 
 ```
 composer require drush/drush 
-
 ```
-!! will not work at first !!
+**!! will not work at first !!**
 
 go to folder > web > sites > default > settings.php
-
-add > in $database 
+1. add > in $database 
+2. uncomment
 
 ```
+1. 
 $database(
 
  'unix_socket' => '/Applications/MAMP/tmp/mysql/mysql.sock',
 )
-
+2. 
+# if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
+# include $app_root . '/' . $site_path . '/settings.local.php';
+# }
 ```
 
+go to development.services.yml 
+add 
+```
+parameters:
+  http.response.debug_cacheability_headers: true
+  twig.config:
+    debug: true
+    auto_reload: true
+    cache: false
+services:
+  cache.backend.null:
+    class: Drupal\Core\Cache\NullBackendFactory
+```
 #### Usage
 
 ```
 Cache refresh
-  drush cr
+   drush cr
 Export config files
-  drush cex
+   drush cex
 Import config files
-  dursh cim -y 
-  drush updb -y
+   dursh cim -y 
+   drush updb -y
 ```

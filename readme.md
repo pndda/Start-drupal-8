@@ -16,7 +16,7 @@ composer require drush/drush
 ```
 **!! will not work at first !!**
 
-go to folder > web > sites > default > settings.php
+### Go to folder > web > sites > default > settings.php
 1. add > in $database 
 2. uncomment
 
@@ -32,7 +32,7 @@ $database(
 # }
 ```
 
-go to development.services.yml 
+### Go to development.services.yml 
 add 
 ```
 parameters:
